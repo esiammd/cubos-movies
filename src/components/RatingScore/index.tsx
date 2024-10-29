@@ -13,9 +13,9 @@ const RatingScore: React.FC<RatingScoreProps> = ({ score }) => {
           cy="49"
           r="45"
           fill="none"
-          stroke-width="8"
-          stroke-dasharray="283"
-          stroke-dashoffset="0"
+          strokeWidth="8"
+          strokeDasharray="283"
+          strokeDashoffset="0"
           className="background"
         ></circle>
         <circle
@@ -23,9 +23,9 @@ const RatingScore: React.FC<RatingScoreProps> = ({ score }) => {
           cy="49"
           r="45"
           fill="none"
-          stroke-width="8"
-          stroke-dasharray="283"
-          stroke-dashoffset={283 * (1 - score / 100)}
+          strokeWidth="8"
+          strokeDasharray="283"
+          strokeDashoffset={283 * (1 - score / 100)}
           className="foreground"
         ></circle>
       </svg>
