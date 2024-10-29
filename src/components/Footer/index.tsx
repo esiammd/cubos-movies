@@ -1,12 +1,12 @@
-import { FooterContainer } from './styles';
+import { FooterContent } from './styles';
 
 const Footer: React.FC = () => {
   return (
-    <FooterContainer>
+    <FooterContent>
       <span>
         2023 © Todos os direitos reservados a <strong>Cubos Movies</strong>
       </span>
-    </FooterContainer>
+    </FooterContent>
   );
 };
 

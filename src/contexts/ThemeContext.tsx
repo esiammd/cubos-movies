@@ -4,7 +4,7 @@ import { ThemeOptions } from '../styles/themes';
 
 export interface ThemeContextProps {
   theme: ThemeOptions;
-  changeTheme: () => void;
+  toggleTheme: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextProps>({} as ThemeContextProps);

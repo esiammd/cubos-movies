@@ -1,19 +1,11 @@
 import styled from 'styled-components';
 
-export const FooterContainer = styled.footer`
-  position: absolute;
-  bottom: 0;
-
-  width: 100%;
+export const FooterContent = styled.footer`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 1.5rem;
-
-  color: ${props => props.theme.colors.textFooter};
+  border-top: 1px solid ${props => props.theme.colors.border};
+  color: ${props => props.theme.colors.text2};
   text-align: center;
-
-  border-top: 1px solid ${props => props.theme.colors.border}30;
-
-  // Estilos para dispositivos móveis
-  @media (max-width: 768px) {
-    padding: 1.25rem;
-  }
 `;

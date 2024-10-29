@@ -5,23 +5,35 @@ export type ThemeOptions = 'dark' | 'light';
 
 export type ThemeType = {
   colors: {
-    primaryButton: string;
-    primaryButtonHover: string;
-    primaryButtonActive: string;
-    primaryButtonDisabled: string;
+    primaryButton: {
+      default: string;
+      hover: string;
+      active: string;
+      disabled: string;
+    };
 
-    secondaryButton: string;
-    secondaryButtonHover: string;
-    secondaryButtonActive: string;
-    secondaryButtonDisabled: string;
+    secondaryButton: {
+      default: string;
+      hover: string;
+      active: string;
+      disabled: string;
+    };
 
-    white: string;
-    yellow: string;
+    progressBar: {
+      progress: string;
+      border: string;
+    };
+
     background: string;
+    backgroundCard: string;
+    backgroundTag: string;
+
     border: string;
 
-    text: string;
-    textFooter: string;
+    text1: string;
+    text2: string;
+    text3: string;
+    text4: string;
   };
 };
 

@@ -15,12 +15,12 @@ const CustomThemeProvider: React.FC<CustomThemeProviderProps> = ({
 }) => {
   const [theme, setTheme] = usePersistedState<ThemeOptions>('theme', 'dark');
 
-  const changeTheme = useCallback(() => {
+  const toggleTheme = useCallback(() => {
     setTheme(state => (state === 'dark' ? 'light' : 'dark'));
   }, [setTheme]);
 
   return (
-    <ThemeContext.Provider value={{ theme, changeTheme }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <ThemeProvider theme={themes[theme]}>{children}</ThemeProvider>
     </ThemeContext.Provider>
   );

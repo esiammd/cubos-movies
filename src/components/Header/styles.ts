@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-export const HeaderContainer = styled.header`
+export const HeaderContent = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
-  border-bottom: 1px solid ${props => props.theme.colors.border}30;
+  border-bottom: 1px solid ${props => props.theme.colors.border};
   background: ${props => props.theme.colors.background}80;
 `;
 
@@ -22,18 +22,18 @@ export const ProjectName = styled.div`
     font-family: 'Inter', sans-serif;
     font-size: 1.25rem;
     line-height: 2.42;
-    color: ${props => props.theme.colors.text};
+    color: ${props => props.theme.colors.text1};
   }
 `;
 
-export const ButtonSwitchTheme = styled.button`
+export const ToggleTheme = styled.button`
   display: flex;
   align-items: center;
   padding: 0.75rem 1.25rem;
 
   border: 0;
   border-radius: 2px;
-  background: ${props => props.theme.colors.secondaryButton};
+  background: ${props => props.theme.colors.secondaryButton.default};
   cursor: pointer;
 
   img {
@@ -41,10 +41,10 @@ export const ButtonSwitchTheme = styled.button`
   }
 
   &:hover {
-    background: ${props => props.theme.colors.secondaryButtonHover};
+    background: ${props => props.theme.colors.secondaryButton.hover};
   }
 
   &:active {
-    background: ${props => props.theme.colors.secondaryButtonActive};
+    background: ${props => props.theme.colors.secondaryButton.active};
   }
 `;

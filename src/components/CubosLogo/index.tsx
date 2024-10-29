@@ -3,7 +3,7 @@ import themes from '../../styles/themes';
 
 const CubosLogo: React.FC = () => {
   const { theme } = useTheme();
-  const color = themes[theme].colors.text;
+  const color = themes[theme].colors.text1;
 
   return (
     <svg

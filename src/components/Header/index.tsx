@@ -5,26 +5,26 @@ import moonFillIcon from '../../assets/icons/moon-fill.svg';
 
 import CubosLogo from '../CubosLogo';
 
-import { HeaderContainer, ProjectName, ButtonSwitchTheme } from './styles';
+import { HeaderContent, ProjectName, ToggleTheme } from './styles';
 
 const Header: React.FC = () => {
-  const { theme, changeTheme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
 
   const title =
     theme === 'dark' ? 'Alterar para tema light' : 'Alterar para tema dark';
   const icon = theme === 'dark' ? sunFillIcon : moonFillIcon;
 
   return (
-    <HeaderContainer>
+    <HeaderContent>
       <ProjectName>
         <CubosLogo />
         <strong>Movies</strong>
       </ProjectName>
 
-      <ButtonSwitchTheme title={title} onClick={changeTheme}>
+      <ToggleTheme title={title} onClick={toggleTheme}>
         <img src={icon} />
-      </ButtonSwitchTheme>
-    </HeaderContainer>
+      </ToggleTheme>
+    </HeaderContent>
   );
 };
 
