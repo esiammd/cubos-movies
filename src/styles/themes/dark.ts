@@ -22,7 +22,7 @@ export const dark: ThemeType = {
     },
 
     background: '#121113',
-    backgroundCard: 'rgba(35, 34, 37, 0.75)',
+    backgroundCard: '#232225',
     backgroundTag: 'rgba(193, 80, 255, 0.18)',
 
     border: 'rgba(241, 230, 253, 0.19)',

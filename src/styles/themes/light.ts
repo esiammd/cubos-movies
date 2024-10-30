@@ -22,7 +22,7 @@ export const light: ThemeType = {
     },
 
     background: '#FDFCFD',
-    backgroundCard: 'rgba(242, 239, 243, 0.75)',
+    backgroundCard: '#F2eFF3',
     backgroundTag: 'rgba(142, 0, 241, 0.18)',
 
     border: 'rgba(20, 0, 53, 0.19)',

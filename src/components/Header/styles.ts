@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 
+import hexToRgba from '../../utils/hexToRgba';
+
 export const HeaderContent = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
   border-bottom: 1px solid ${props => props.theme.colors.border};
-  background: ${props => props.theme.colors.background}80;
+  background: ${props => hexToRgba(props.theme.colors.background, 0.5)};
 `;
 
 export const ProjectName = styled.div`

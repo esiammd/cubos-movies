@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
+import hexToRgba from '../utils/hexToRgba';
+
 export default createGlobalStyle`
   * {
     margin: 0;
@@ -22,9 +24,9 @@ export default createGlobalStyle`
     width: 100%;
     background: linear-gradient(
         to bottom,
-        ${props => props.theme.colors.background}FF 0%,
-        ${props => props.theme.colors.background}75 49%,
-        ${props => props.theme.colors.background}FF 100%
+        ${props => hexToRgba(props.theme.colors.background, 1)} 0%,
+        ${props => hexToRgba(props.theme.colors.background, 0.46)} 49%,
+        ${props => hexToRgba(props.theme.colors.background, 1)} 100%
       ),
       url('/cubos-background.png');
     background-size: cover;
