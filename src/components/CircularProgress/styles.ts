@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
-export const RatingScoreContent = styled.div`
+import hexToRgba from '../../utils/hexToRgba';
+
+export const CircularProgressContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${props => props.theme.colors.background}80;
+  background: ${props => hexToRgba(props.theme.colors.background, 0.5)};
   border-radius: 50%;
 
   circle.background {

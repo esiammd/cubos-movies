@@ -1,12 +1,12 @@
-import { RatingScoreContent, ScoreValue } from './styles';
+import { CircularProgressContent, ScoreValue } from './styles';
 
-interface RatingScoreProps {
+interface CircularProgressProps {
   score: number;
 }
 
-const RatingScore: React.FC<RatingScoreProps> = ({ score }) => {
+const CircularProgress: React.FC<CircularProgressProps> = ({ score }) => {
   return (
-    <RatingScoreContent>
+    <CircularProgressContent>
       <svg width="98" height="98" viewBox="0 0 98 98">
         <circle
           cx="49"
@@ -36,8 +36,8 @@ const RatingScore: React.FC<RatingScoreProps> = ({ score }) => {
           <span>%</span>
         </strong>
       </ScoreValue>
-    </RatingScoreContent>
+    </CircularProgressContent>
   );
 };
 
-export default RatingScore;
+export default CircularProgress;
