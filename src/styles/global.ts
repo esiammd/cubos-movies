@@ -28,7 +28,7 @@ export default createGlobalStyle`
         ${props => hexToRgba(props.theme.colors.background, 0.46)} 49%,
         ${props => hexToRgba(props.theme.colors.background, 1)} 100%
       ),
-      url('/cubos-background.png');
+      url('/src/assets/cubos-background.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
