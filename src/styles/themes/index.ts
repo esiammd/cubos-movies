@@ -30,6 +30,8 @@ export type ThemeType = {
       description: string;
     };
 
+    skeleton: string;
+
     background: string;
     backgroundCard: string;
     backgroundTag: string;

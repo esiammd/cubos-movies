@@ -27,6 +27,9 @@ export const light: ThemeType = {
       description: '#65636D',
     },
 
+    skeleton:
+      'linear-gradient(to right, #E7D6FB 25%, #EFE3FE 50%, #E7D6FB 75%)',
+
     background: '#FDFCFD',
     backgroundCard: '#F2eFF3',
     backgroundTag: 'rgba(142, 0, 241, 0.18)',
