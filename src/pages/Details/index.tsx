@@ -1,6 +1,5 @@
 import CardInfo from '../../components/CardInfo';
 import MovieGenres from '../../components/MovieGenres';
-import MoviePoster from '../../components/MoviePoster';
 import MovieRating from '../../components/MovieRating';
 import MovieSynopsis from '../../components/MovieSynopsis';
 import MovieTitle from '../../components/MovieTitle';
@@ -9,6 +8,7 @@ import MovieTrailer from '../../components/MovieTrailer';
 import {
   DetailsContainer,
   MovieDetails,
+  MoviePoster,
   MovieOverview,
   MovieHeader,
   MovieInformation,
@@ -19,7 +19,7 @@ import {
 } from './styles';
 
 const Details: React.FC = () => {
-  const movieData = {
+  const movie = {
     title: 'Bumblebee',
     originalTitle: 'Bumblebee',
     tagline: 'Todo herói tem um começo.',
@@ -44,49 +44,49 @@ const Details: React.FC = () => {
       <MovieDetails>
         <MoviePoster
           src="https://upload.wikimedia.org/wikipedia/pt/4/44/Bumblebee_%282018%29.jpg"
-          alt="Poster"
+          alt={movie.title}
         />
 
         <MovieOverview>
           <MovieHeader>
             <MovieTitle
-              title={movieData.title}
-              originalTitle={movieData.originalTitle}
-              tagline={movieData.tagline}
+              title={movie.title}
+              originalTitle={movie.originalTitle}
+              tagline={movie.tagline}
             />
 
             <MovieRating
-              popularity={movieData.popularity}
-              votes={movieData.votes}
-              score={movieData.score}
+              popularity={movie.popularity}
+              votes={movie.votes}
+              score={movie.score}
             />
           </MovieHeader>
 
           <MovieInformation>
             <MovieDescription>
-              <MovieSynopsis synopsis={movieData.synopsis} />
-              <MovieGenres genres={movieData.genres} />
+              <MovieSynopsis synopsis={movie.synopsis} />
+              <MovieGenres genres={movie.genres} />
             </MovieDescription>
 
             <AdditionalMovieInfo>
               <MovieAttributes>
-                <CardInfo label="LANÇAMENTO" value={movieData.releaseDate} />
-                <CardInfo label="DURAÇÃO" value={movieData.duration} />
-                <CardInfo label="SITUAÇÃO" value={movieData.status} />
-                <CardInfo label="IDIOMA" value={movieData.language} />
+                <CardInfo label="LANÇAMENTO" value={movie.releaseDate} />
+                <CardInfo label="DURAÇÃO" value={movie.duration} />
+                <CardInfo label="SITUAÇÃO" value={movie.status} />
+                <CardInfo label="IDIOMA" value={movie.language} />
               </MovieAttributes>
 
               <MovieFinancials>
-                <CardInfo label="ORÇAMENTO" value={movieData.budget} />
-                <CardInfo label="RECEITA" value={movieData.revenue} />
-                <CardInfo label="LUCRO" value={movieData.profit} />
+                <CardInfo label="ORÇAMENTO" value={movie.budget} />
+                <CardInfo label="RECEITA" value={movie.revenue} />
+                <CardInfo label="LUCRO" value={movie.profit} />
               </MovieFinancials>
             </AdditionalMovieInfo>
           </MovieInformation>
         </MovieOverview>
       </MovieDetails>
 
-      <MovieTrailer trailerUrl={movieData.trailerUrl} />
+      <MovieTrailer trailerUrl={movie.trailerUrl} />
     </DetailsContainer>
   );
 };

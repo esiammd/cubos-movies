@@ -46,6 +46,10 @@ export const MovieDetails = styled.div`
   }
 `;
 
+export const MoviePoster = styled.img`
+  border-radius: 4px;
+`;
+
 export const MovieOverview = styled.div`
   margin-left: 2rem;
   flex: 1;
