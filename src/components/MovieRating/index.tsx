@@ -1,5 +1,5 @@
 import CardInfo from '../CardInfo';
-import CircularProgress from '../CircularProgress';
+import RatingScore from '../RatingScore';
 
 import { MovieRatingContent, RatingMetrics } from './styles';
 
@@ -25,7 +25,7 @@ const MovieRating: React.FC<MovieRatingProps> = ({
         <CardInfo label="VOTOS" value={String(votes)} ratingMetric />
       </RatingMetrics>
 
-      <CircularProgress score={score} />
+      <RatingScore score={score} />
     </MovieRatingContent>
   );
 };
