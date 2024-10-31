@@ -1,7 +1,9 @@
+import { GenreProps } from '../../interfaces/genre';
+
 import { MovieGenresContent, GenereTags, Tag } from './styles';
 
 interface MovieGenresProps {
-  genres: string[];
+  genres: GenreProps[];
 }
 
 const MovieGenres: React.FC<MovieGenresProps> = ({ genres }) => {
@@ -10,7 +12,7 @@ const MovieGenres: React.FC<MovieGenresProps> = ({ genres }) => {
       <strong>Gêneros</strong>
       <GenereTags>
         {genres.map(genre => (
-          <Tag key={genre}>{genre.toUpperCase()}</Tag>
+          <Tag key={genre.name}>{genre.name.toUpperCase()}</Tag>
         ))}
       </GenereTags>
     </MovieGenresContent>

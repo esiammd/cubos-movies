@@ -1,17 +1,17 @@
 import { GenreProps } from './genre';
+import { SpokenLanguagesProps } from './spokenLanguages';
 
 export interface MovieProps {
   id: string;
   title: string;
   original_title: string;
-  tagline: string | null;
+  tagline: string;
   overview: string;
-  poster_path: string | null;
-  backdrop_path: string | null;
+  poster_path: string;
+  backdrop_path: string;
   trailer_key: string;
 
   genre_ids: number[];
-  genre_names: string[];
   genres: GenreProps[];
 
   popularity: number;
@@ -19,12 +19,10 @@ export interface MovieProps {
   vote_average: number;
 
   release_date: string;
-  runtime: number | null;
+  runtime: number;
   runtime_formatted: string;
   status: string;
-  spoken_languages: {
-    name: string;
-  }[];
+  spoken_languages: SpokenLanguagesProps[];
   languages: string[];
 
   budget: number;

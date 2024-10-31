@@ -13,7 +13,12 @@ export const light: ThemeType = {
       default: 'rgba(183, 68, 247, 0.08)',
       hover: 'rgba(193, 80, 255, 0.18)',
       active: 'rgba(180, 18, 249, 0.04)',
-      disabled: 'rgba(235, 234, 248, 0.08)',
+      disabled: 'rgba(48, 0, 64, 0.18)',
+    },
+
+    buttonText: {
+      default: '#211F26',
+      disabled: 'rgba(33, 31, 38, 0.43)',
     },
 
     progressBar: {
@@ -25,6 +30,13 @@ export const light: ThemeType = {
       background: '#550055',
       title: '#211F26',
       description: '#65636D',
+    },
+
+    input: {
+      background: '#FAF9FB',
+      border: '#D0CDD7',
+      borderFocus: '#8E4EC6',
+      placeholder: '#8E8C99',
     },
 
     skeleton:

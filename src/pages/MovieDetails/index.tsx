@@ -5,10 +5,12 @@ import { ptBR } from 'date-fns/locale/pt-BR';
 
 import { api } from '../../lib/axios';
 
-import mapStatusToPortuguese from '../../utils/mapStatusToPortuguese';
 import formatCurrency from '../../utils/formatCurrency';
+import mapStatusToPortuguese from '../../utils/mapStatusToPortuguese';
+import mapLanguageToPortuguese from '../../utils/mapLanguageToPortuguese';
 
 import { MovieProps } from '../../interfaces/movie';
+import { SpokenLanguagesProps } from '../../interfaces/spokenLanguages';
 
 import CardInfo from '../../components/CardInfo';
 import MovieGenres from '../../components/MovieGenres';
@@ -35,22 +37,18 @@ const MovieDetails: React.FC = () => {
   const [movie, setMovie] = useState({} as MovieProps);
   const [isLoading, setIsLoading] = useState(true);
 
-  const getMovieTrailer = useCallback(async () => {
-    const response = await api.get(`/movie/${id}/videos`);
-    const videos = response.data.results;
-    const trailer = videos.find(
-      (video: { type: string }) => video.type === 'Trailer',
-    );
-    console.log(response.data);
-    return trailer;
-  }, [id]);
-
   const getMovie = useCallback(async () => {
     setIsLoading(true);
-    const response = await api.get(`/movie/${id}`);
+    const response = await api.get(`/movie/${id}`, {
+      params: {
+        append_to_response: 'videos',
+      },
+    });
     const movieData = response.data;
 
-    const trailer_key = movieData.video ? (await getMovieTrailer()).key : '';
+    const trailer = movieData.videos.results.find(
+      (video: { type: string }) => video.type === 'Trailer',
+    );
 
     const hours: number = Math.floor(movieData.runtime / 60);
     const minutes: number = movieData.runtime % 60;
@@ -60,18 +58,16 @@ const MovieDetails: React.FC = () => {
     const movieFormatted = {
       ...movieData,
       languages: movieData.spoken_languages.map(
-        (language: { name: string }) => language.name,
+        (language: SpokenLanguagesProps) =>
+          mapLanguageToPortuguese(language.name),
       ),
-      trailer_key,
-      genre_names: movieData.genres.map(
-        (genre: { name: string }) => genre.name,
-      ),
+      trailer_key: trailer?.key,
       runtime_formatted,
     };
 
     setMovie(movieFormatted);
     setIsLoading(false);
-  }, [getMovieTrailer, id]);
+  }, [id]);
 
   useEffect(() => {
     getMovie();
@@ -118,7 +114,7 @@ const MovieDetails: React.FC = () => {
               <MovieInformation>
                 <MovieDescription>
                   <MovieSynopsis synopsis={movie.overview} />
-                  <MovieGenres genres={movie.genre_names} />
+                  <MovieGenres genres={movie.genres} />
                 </MovieDescription>
 
                 <AdditionalMovieInfo>

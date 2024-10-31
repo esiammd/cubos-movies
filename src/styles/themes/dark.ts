@@ -16,6 +16,11 @@ export const dark: ThemeType = {
       disabled: 'rgba(235, 234, 248, 0.08)',
     },
 
+    buttonText: {
+      default: '#FFFFFF',
+      disabled: 'rgba(234, 230, 253, 0.43)',
+    },
+
     progressBar: {
       progress: '#FFE000',
       border: 'rgba(255, 255, 255, 0.27)',
@@ -25,6 +30,13 @@ export const dark: ThemeType = {
       background: '#000000',
       title: '#EEEEEE',
       description: '#B4B4B4',
+    },
+
+    input: {
+      background: '#1A191B',
+      border: '#49474E',
+      borderFocus: '#8E4EC6',
+      placeholder: '#6F6D78',
     },
 
     skeleton:

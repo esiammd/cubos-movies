@@ -3,7 +3,7 @@ import { MovieTitleContent, Title, OriginalTitle, Tagline } from './styles';
 interface MovieTitleProps {
   title: string;
   originalTitle: string;
-  tagline: string | null;
+  tagline: string;
 }
 
 const MovieTitle: React.FC<MovieTitleProps> = ({

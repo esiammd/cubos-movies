@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const MovieCardContent = styled.li`
   width: 100%;
+  height: 355px;
+
   border-radius: 4px;
   overflow: hidden;
   position: relative;
@@ -16,6 +18,9 @@ export const MovieCardContent = styled.li`
     img {
       opacity: 0.8;
     }
+  }
+  @media (max-width: 768px) {
+    height: 240px;
   }
 `;
 

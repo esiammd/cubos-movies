@@ -19,6 +19,11 @@ export type ThemeType = {
       disabled: string;
     };
 
+    buttonText: {
+      default: string;
+      disabled: string;
+    };
+
     progressBar: {
       progress: string;
       border: string;
@@ -28,6 +33,13 @@ export type ThemeType = {
       background: string;
       title: string;
       description: string;
+    };
+
+    input: {
+      background: string;
+      border: string;
+      borderFocus: string;
+      placeholder: string;
     };
 
     skeleton: string;
