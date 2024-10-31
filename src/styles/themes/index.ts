@@ -24,9 +24,16 @@ export type ThemeType = {
       border: string;
     };
 
+    movieCard: {
+      background: string;
+      title: string;
+      description: string;
+    };
+
     background: string;
     backgroundCard: string;
     backgroundTag: string;
+    backgroundMovieList: string;
 
     border: string;
 

@@ -21,9 +21,16 @@ export const light: ThemeType = {
       border: 'rgba(0, 0, 0, 0.27)',
     },
 
+    movieCard: {
+      background: '#550055',
+      title: '#211F26',
+      description: '#65636D',
+    },
+
     background: '#FDFCFD',
     backgroundCard: '#F2eFF3',
     backgroundTag: 'rgba(142, 0, 241, 0.18)',
+    backgroundMovieList: 'rgba(48, 0, 64, 0.08)',
 
     border: 'rgba(20, 0, 53, 0.19)',
 

@@ -21,9 +21,16 @@ export const dark: ThemeType = {
       border: 'rgba(255, 255, 255, 0.27)',
     },
 
+    movieCard: {
+      background: '#000000',
+      title: '#EEEEEE',
+      description: '#B4B4B4',
+    },
+
     background: '#121113',
     backgroundCard: '#232225',
     backgroundTag: 'rgba(193, 80, 255, 0.18)',
+    backgroundMovieList: 'rgba(235, 234, 248, 0.08)',
 
     border: 'rgba(241, 230, 253, 0.19)',
 
