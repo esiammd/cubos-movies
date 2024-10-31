@@ -7,7 +7,15 @@ function usePersistedState<T>(key: string, initialValue: T): Response<T> {
     const storageValue = localStorage.getItem(key);
 
     if (storageValue) {
-      return JSON.parse(storageValue);
+      try {
+        return JSON.parse(storageValue);
+      } catch (error) {
+        console.error(
+          `Erro ao analisar o valor do localStorage para a chave "${key}":`,
+          error,
+        );
+        return initialValue;
+      }
     } else {
       return initialValue;
     }

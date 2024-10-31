@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { api } from '../../lib/axios';
 
+import usePersistedState from '../../hooks/usePersistedState';
+
 import { MovieProps } from '../../interfaces/movie';
 import { GenreProps } from '../../interfaces/genre';
 
@@ -15,7 +17,11 @@ import { HomeContainer, Form, MovieList } from './styles';
 const Home: React.FC = () => {
   const [movies, setMovies] = useState<MovieProps[]>([]);
   const [search, setSearch] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = usePersistedState<number>(
+    'currentPage',
+    1,
+  );
+  const [totalPages, setTotalPages] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
 
   const getGenres = useCallback(async () => {
@@ -47,6 +53,7 @@ const Home: React.FC = () => {
     );
 
     setMovies(moviesWithGenres);
+    setTotalPages(moviesResponse.data.total_pages);
     setIsLoading(false);
   }, [currentPage, getGenres]);
 
@@ -72,6 +79,7 @@ const Home: React.FC = () => {
           genres: movie.genre_ids.map(id => genreMap[id]),
         }),
       );
+      setTotalPages(moviesResponse.data.total_pages);
       setMovies(moviesWithGenres);
     },
     [search, getGenres],
@@ -84,9 +92,12 @@ const Home: React.FC = () => {
     [],
   );
 
-  const handlePageChange = useCallback((pageNumber: number) => {
-    setCurrentPage(pageNumber);
-  }, []);
+  const handlePageChange = useCallback(
+    (pageNumber: number) => {
+      setCurrentPage(pageNumber);
+    },
+    [setCurrentPage],
+  );
 
   useEffect(() => {
     getMovies();
@@ -117,7 +128,7 @@ const Home: React.FC = () => {
       <footer>
         <Pagination
           currentPage={currentPage}
-          totalPages={20}
+          totalPages={totalPages}
           onPageChange={handlePageChange}
         />
       </footer>
