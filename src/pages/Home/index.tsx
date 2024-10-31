@@ -33,9 +33,10 @@ const Home: React.FC = () => {
     setIsLoading(true);
 
     const [moviesResponse, genresResponse] = await Promise.all([
-      api.get('/discover/movie', {
+      api.get(search ? '/search/movie' : '/discover/movie', {
         params: {
           page: currentPage,
+          query: search,
         },
       }),
       getGenres(),
@@ -55,34 +56,15 @@ const Home: React.FC = () => {
     setMovies(moviesWithGenres);
     setTotalPages(moviesResponse.data.total_pages);
     setIsLoading(false);
-  }, [currentPage, getGenres]);
+  }, [currentPage, getGenres, search]);
 
   const handleSubmitForm = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      const [moviesResponse, genresResponse] = await Promise.all([
-        api.get('search/movie', {
-          params: {
-            query: search,
-          },
-        }),
-        getGenres(),
-      ]);
-
-      const genreMap = Object.fromEntries(
-        genresResponse.map((genre: GenreProps) => [genre.id, genre.name]),
-      );
-
-      const moviesWithGenres = moviesResponse.data.results.map(
-        (movie: MovieProps) => ({
-          ...movie,
-          genres: movie.genre_ids.map(id => genreMap[id]),
-        }),
-      );
-      setTotalPages(moviesResponse.data.total_pages);
-      setMovies(moviesWithGenres);
+      getMovies();
+      setCurrentPage(1);
     },
-    [search, getGenres],
+    [getMovies, setCurrentPage],
   );
 
   const handleInputChanges = useCallback(
@@ -112,7 +94,6 @@ const Home: React.FC = () => {
             placeholder="Pesquise por filmes"
             value={search}
             onChange={handleInputChanges}
-            required
           />
         </Form>
       </header>
