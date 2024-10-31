@@ -2,7 +2,11 @@ import styled from 'styled-components';
 
 import hexToRgba from '../../utils/hexToRgba';
 
-export const DetailsContainer = styled.div`
+interface MovieMovieDetailsProps {
+  $backdrop: string;
+}
+
+export const MovieDetailsContainer = styled.div`
   padding: 2rem;
 
   @media (max-width: 768px) {
@@ -10,7 +14,7 @@ export const DetailsContainer = styled.div`
   }
 `;
 
-export const MovieDetails = styled.div`
+export const MovieMovieDetails = styled.div<MovieMovieDetailsProps>`
   display: flex;
   padding: 2rem;
   position: relative;
@@ -28,7 +32,7 @@ export const MovieDetails = styled.div`
         ${props => hexToRgba(props.theme.colors.background, 0.8)} 50%,
         ${props => hexToRgba(props.theme.colors.background, 0)} 100%
       ),
-      url('https://img34.tokyvideo.com/videos/365/365013/previews/previews_0012_custom_1697426435.1015.jpg');
+      url('${props => props.$backdrop}');
     background-size: cover;
     background-position: left center;
     background-repeat: no-repeat;
@@ -47,7 +51,13 @@ export const MovieDetails = styled.div`
 `;
 
 export const MoviePoster = styled.img`
+  width: 22.19rem;
+  height: 100%;
   border-radius: 4px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const MovieOverview = styled.div`

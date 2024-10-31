@@ -10,7 +10,7 @@ const MovieGenres: React.FC<MovieGenresProps> = ({ genres }) => {
       <strong>Gêneros</strong>
       <GenereTags>
         {genres.map(genre => (
-          <Tag key={genre}>{genre}</Tag>
+          <Tag key={genre}>{genre.toUpperCase()}</Tag>
         ))}
       </GenereTags>
     </MovieGenresContent>

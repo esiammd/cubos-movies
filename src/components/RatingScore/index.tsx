@@ -42,7 +42,7 @@ const RatingScore: React.FC<RatingScoreProps> = ({ score }) => {
 
       <ScoreValue>
         <strong>
-          {score.toFixed(2)}
+          {(score * 10).toFixed(2)}
           <span>%</span>
         </strong>
       </ScoreValue>

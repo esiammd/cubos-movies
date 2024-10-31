@@ -24,6 +24,10 @@ export const Tag = styled.span`
   border-radius: 2px;
   padding: 0.5rem;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   font-size: 0.75rem;
   font-weight: 600;
   color: ${props => props.theme.colors.text4};
