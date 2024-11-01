@@ -5,6 +5,7 @@ interface RatingScoreProps {
 }
 
 const RatingScore: React.FC<RatingScoreProps> = ({ score }) => {
+  const scorePercentage = score * 10;
   const size = 98;
   const strokeWidth = 8;
 
@@ -13,7 +14,8 @@ const RatingScore: React.FC<RatingScoreProps> = ({ score }) => {
   const circumference = Math.PI * (size - strokeWidth);
 
   const backgroundStrokeDashoffset = 0;
-  const foregroundStrokeDashoffset = circumference * (1 - score / 100);
+  const foregroundStrokeDashoffset =
+    circumference * (1 - scorePercentage / 100);
 
   return (
     <RatingScoreContent>
@@ -42,7 +44,7 @@ const RatingScore: React.FC<RatingScoreProps> = ({ score }) => {
 
       <ScoreValue>
         <strong>
-          {(score * 10).toFixed(2)}
+          {scorePercentage.toFixed(2)}
           <span>%</span>
         </strong>
       </ScoreValue>
