@@ -1,50 +1,49 @@
-# React + TypeScript + Vite
+# <img src="./public/favicon.svg/" alt="App" width="24" /> Prova Técnica [Cubos Tecnologia](https://git.cubos.io/cubos/desafios-tecnicos/desafio-tecnico-web)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<span>Projeto desenvolvido como Desafio Técnico de Frontend para a Cubos Tecnologia.</span>
 
-Currently, two official plugins are available:
+<p align="center">
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-api">API</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-como-executar-o-projeto">Como executar o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-link-vercel">Link Vercel</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-observações">Observações</a>
+</p>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## 🚀 Tecnologias
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Este projeto foi desenvolvido com as seguintes tecnologias:
 
-- Configure the top-level `parserOptions` property like this:
+-   [ReactJS](https://reactjs.org)
+-   [TypeScript](https://www.typescriptlang.org/)
+-   [Axios](https://axios-http.com/ptbr/docs/intro)
+-   [Vite](https://vite.dev/)
+-   [styled-components](https://styled-components.com/)
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## ☁ API
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+-   [TMDB](https://www.themoviedb.org/)
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## 🤔 Como executar o projeto
+
+1. Clonar o repositorio: `git@github.com:esiammd/cubos-movies.git`
+
+2. Acessar a pasta do projeto no terminal: `cd cubos-movies`
+
+3. Instalar as dependências do projeto: `npm i`
+
+4. Criar um arquivo *.env.local* tal como mostra o arquivo *.env.example* e adicionar a chave da API TMDB.
+
+5. Executar a versão de desenvolvimento do projeto: `npm run dev`
+
+6. Acessar a aplicação: http://localhost:5173
+
+## 🔗 Link Vercel
+
+https://cubos-movies-three.vercel.app/
+
+## 📝 Observações
+
+1. Para aproveitar os recursos da API, 20 filmes são exibidos por página. A API não suporta offset.
