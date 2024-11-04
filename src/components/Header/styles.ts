@@ -15,6 +15,7 @@ export const ProjectName = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+  cursor: pointer;
 
   img {
     height: 2.25rem;
@@ -25,6 +26,10 @@ export const ProjectName = styled.div`
     font-size: 1.25rem;
     line-height: 2.42;
     color: ${props => props.theme.colors.text1};
+  }
+
+  &:hover {
+    opacity: 0.8;
   }
 `;
 
