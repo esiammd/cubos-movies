@@ -12,6 +12,8 @@ export const HomeContainer = styled.div`
   }
 
   @media (max-width: 768px) {
+    padding: 1rem 0;
+
     header,
     footer {
       padding: 1rem;

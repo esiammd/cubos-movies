@@ -16,7 +16,7 @@ import { HomeContainer, Form, MovieList } from './styles';
 
 const Home: React.FC = () => {
   const [movies, setMovies] = useState<MovieProps[]>([]);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = usePersistedState<string>('search', '');
   const [currentPage, setCurrentPage] = usePersistedState<number>(
     'currentPage',
     1,
@@ -49,7 +49,7 @@ const Home: React.FC = () => {
     const moviesWithGenres = moviesResponse.data.results.map(
       (movie: MovieProps) => ({
         ...movie,
-        genres: movie.genre_ids.map(id => genreMap[id]),
+        genres: movie.genre_ids ? movie.genre_ids.map(id => genreMap[id]) : [],
       }),
     );
 
@@ -70,8 +70,9 @@ const Home: React.FC = () => {
   const handleInputChanges = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       setSearch(event.target.value);
+      setCurrentPage(1);
     },
-    [],
+    [setCurrentPage, setSearch],
   );
 
   const handlePageChange = useCallback(
