@@ -38,7 +38,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
       </MovieInfo>
 
       <Score className="hidden">
-        <RatingScore score={movie.vote_average} />
+        <RatingScore score={movie.vote_average ?? 0} />
       </Score>
     </MovieCardContent>
   );

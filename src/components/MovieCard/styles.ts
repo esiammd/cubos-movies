@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const MovieCardContent = styled.li`
   width: 100%;
-  height: 355px;
+  max-width: 15rem;
+  height: 22rem;
 
   border-radius: 4px;
   overflow: hidden;
@@ -20,7 +21,7 @@ export const MovieCardContent = styled.li`
     }
   }
   @media (max-width: 768px) {
-    height: 240px;
+    height: 20rem;
   }
 `;
 
