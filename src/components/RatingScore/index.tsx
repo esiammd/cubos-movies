@@ -44,7 +44,7 @@ const RatingScore: React.FC<RatingScoreProps> = ({ score }) => {
 
       <ScoreValue>
         <strong>
-          {scorePercentage.toFixed(2)}
+          {scorePercentage.toFixed(scorePercentage % 1 === 0 ? 0 : 2)}
           <span>%</span>
         </strong>
       </ScoreValue>
