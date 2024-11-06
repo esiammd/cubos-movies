@@ -16,6 +16,7 @@ import { HomeContainer, Form, MovieList } from './styles';
 
 const Home: React.FC = () => {
   const [movies, setMovies] = useState<MovieProps[]>([]);
+  const [genreMap, setGenreMap] = useState<Record<number, string>>({});
   const [search, setSearch] = usePersistedState<string>('search', '');
   const [currentPage, setCurrentPage] = usePersistedState<number>(
     'currentPage',
@@ -24,39 +25,28 @@ const Home: React.FC = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
 
-  const getGenres = useCallback(async () => {
-    const response = await api.get('genre/movie/list');
-    return response.data.genres;
-  }, []);
-
   const getMovies = useCallback(async () => {
     setIsLoading(true);
 
-    const [moviesResponse, genresResponse] = await Promise.all([
-      api.get(search ? '/search/movie' : '/discover/movie', {
+    const response = await api.get(
+      search ? '/search/movie' : '/discover/movie',
+      {
         params: {
           page: currentPage,
           query: search,
         },
-      }),
-      getGenres(),
-    ]);
-
-    const genreMap = Object.fromEntries(
-      genresResponse.map((genre: GenreProps) => [genre.id, genre.name]),
+      },
     );
 
-    const moviesWithGenres = moviesResponse.data.results.map(
-      (movie: MovieProps) => ({
-        ...movie,
-        genres: movie.genre_ids ? movie.genre_ids.map(id => genreMap[id]) : [],
-      }),
-    );
+    const moviesWithGenres = response.data.results.map((movie: MovieProps) => ({
+      ...movie,
+      genres: movie.genre_ids ? movie.genre_ids.map(id => genreMap[id]) : [],
+    }));
 
     setMovies(moviesWithGenres);
-    setTotalPages(moviesResponse.data.total_pages);
+    setTotalPages(response.data.total_pages);
     setIsLoading(false);
-  }, [currentPage, getGenres, search]);
+  }, [currentPage, genreMap, search]);
 
   const handleSubmitForm = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
@@ -83,8 +73,24 @@ const Home: React.FC = () => {
   );
 
   useEffect(() => {
-    getMovies();
-  }, [getMovies]);
+    const getGenres = async () => {
+      const response = await api.get('genre/movie/list');
+      const genres = response.data.genres;
+
+      const mappedGenres = Object.fromEntries(
+        genres.map((genre: GenreProps) => [genre.id, genre.name]),
+      ) as Record<number, string>;
+      setGenreMap(mappedGenres);
+    };
+
+    getGenres();
+  }, []);
+
+  useEffect(() => {
+    if (Object.keys(genreMap).length > 0) {
+      getMovies();
+    }
+  }, [genreMap, getMovies]);
 
   return (
     <HomeContainer>
