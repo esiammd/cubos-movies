@@ -8,25 +8,49 @@ import { MovieProps } from '../../interfaces/movie';
 import { GenreProps } from '../../interfaces/genre';
 
 import Input from '../../components/Input';
+import FilterIcon from '../../components/FilterIcon';
 import Pagination from '../../components/Pagination';
 import MovieCard from '../../components/MovieCard';
 import MovieCardSkeleton from '../../components/MovieCardSkeleton';
 
-import { HomeContainer, Form, MovieList } from './styles';
+import {
+  HomeContainer,
+  Form,
+  FormHeader,
+  FilterButton,
+  GenreCheckboxes,
+  MovieList,
+} from './styles';
 
 const Home: React.FC = () => {
   const [movies, setMovies] = useState<MovieProps[]>([]);
   const [genreMap, setGenreMap] = useState<Record<number, string>>({});
   const [search, setSearch] = usePersistedState<string>('search', '');
+  const [checkedItems, setCheckedItems] = usePersistedState<
+    Record<string, boolean>
+  >('checkedGenres', {});
   const [currentPage, setCurrentPage] = usePersistedState<number>(
     'currentPage',
     1,
   );
   const [totalPages, setTotalPages] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
+  const [isShowGenreCheckboxes, setIsShowGenreCheckboxes] = useState(false);
+
+  const handleCheckedItems = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCheckedItems({
+      ...checkedItems,
+      [event.target.value]: event.target.checked,
+    });
+  };
 
   const getMovies = useCallback(async () => {
     setIsLoading(true);
+
+    const selectedGenres = Object.entries(checkedItems)
+      .filter(([, isChecked]) => isChecked)
+      .map(([genreId]) => genreId)
+      .join(',');
 
     const response = await api.get(
       search ? '/search/movie' : '/discover/movie',
@@ -34,6 +58,7 @@ const Home: React.FC = () => {
         params: {
           page: currentPage,
           query: search,
+          with_genres: selectedGenres,
         },
       },
     );
@@ -46,7 +71,7 @@ const Home: React.FC = () => {
     setMovies(moviesWithGenres);
     setTotalPages(response.data.total_pages);
     setIsLoading(false);
-  }, [currentPage, genreMap, search]);
+  }, [checkedItems, currentPage, genreMap, search]);
 
   const handleSubmitForm = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
@@ -64,6 +89,10 @@ const Home: React.FC = () => {
     },
     [setCurrentPage, setSearch],
   );
+
+  const handleShowGenreCheckboxes = useCallback(() => {
+    setIsShowGenreCheckboxes(state => !state);
+  }, []);
 
   const handlePageChange = useCallback(
     (pageNumber: number) => {
@@ -96,12 +125,38 @@ const Home: React.FC = () => {
     <HomeContainer>
       <header>
         <Form onSubmit={handleSubmitForm}>
-          <Input
-            type="text"
-            placeholder="Pesquise por filmes"
-            value={search}
-            onChange={handleInputChanges}
-          />
+          <FormHeader>
+            <Input
+              type="text"
+              placeholder="Pesquise por filmes"
+              value={search}
+              onChange={handleInputChanges}
+            />
+            <FilterButton
+              type="button"
+              title="Filtro de gêneros"
+              onClick={handleShowGenreCheckboxes}
+            >
+              <FilterIcon />
+            </FilterButton>
+          </FormHeader>
+
+          {isShowGenreCheckboxes && (
+            <GenreCheckboxes>
+              {Object.entries(genreMap).map(([id, name]) => (
+                <label key={id} className="custom-checkbox">
+                  <input
+                    type="checkbox"
+                    value={id}
+                    checked={checkedItems[id] || false}
+                    onChange={handleCheckedItems}
+                  />
+                  <span className="checkmark"></span>
+                  {name}
+                </label>
+              ))}
+            </GenreCheckboxes>
+          )}
         </Form>
       </header>
 
