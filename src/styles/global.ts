@@ -28,7 +28,7 @@ export default createGlobalStyle`
         ${props => hexToRgba(props.theme.colors.background, 0.46)} 49%,
         ${props => hexToRgba(props.theme.colors.background, 1)} 100%
       ),
-      url('/src/assets/cubos-background.png');
+      url('/cubos-background.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -40,5 +40,5 @@ export default createGlobalStyle`
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
     font-size: 1rem;
-  }    
+  }
 `;
