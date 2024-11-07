@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 
-import ChevronLeft from '../ChevronLeft';
-import ChevronRight from '../ChevronRight';
+import ChevronLeftIcon from '../ChevronLeftIcon';
+import ChevronRightIcon from '../ChevronRightIcon';
 
 import { PaginationContent, PrevPage, NextPage, PageNumber } from './styles';
 
@@ -55,7 +55,7 @@ const Pagination: React.FC<PaginationProps> = ({
           }}
           disabled={currentPage === 1}
         >
-          <ChevronLeft />
+          <ChevronLeftIcon />
         </PrevPage>
       )}
 
@@ -76,7 +76,7 @@ const Pagination: React.FC<PaginationProps> = ({
           }}
           disabled={currentPage === totalPages}
         >
-          <ChevronRight />
+          <ChevronRightIcon />
         </NextPage>
       )}
     </PaginationContent>
