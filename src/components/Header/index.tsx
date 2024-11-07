@@ -31,7 +31,7 @@ const Header: React.FC = () => {
         <strong>Movies</strong>
       </ProjectName>
 
-      <ToggleTheme title={title} onClick={toggleTheme}>
+      <ToggleTheme type="button" title={title} onClick={toggleTheme}>
         <img src={icon} />
       </ToggleTheme>
     </HeaderContent>
