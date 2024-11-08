@@ -3,16 +3,18 @@ import { Outlet } from 'react-router-dom';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
-import { LayoutContainer } from './styles';
+import { LayoutContainer, ContentContainer } from './styles';
 
-const DefaultLayouts: React.FC = () => {
+const DefaultLayout: React.FC = () => {
   return (
     <LayoutContainer>
       <Header />
-      <Outlet />
+      <ContentContainer>
+        <Outlet />
+      </ContentContainer>
       <Footer />
     </LayoutContainer>
   );
 };
 
-export default DefaultLayouts;
+export default DefaultLayout;

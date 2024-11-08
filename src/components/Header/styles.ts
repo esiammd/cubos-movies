@@ -2,13 +2,18 @@ import styled from 'styled-components';
 
 import hexToRgba from '../../utils/hexToRgba';
 
+export const HeaderContainer = styled.header`
+  border-bottom: 1px solid ${props => props.theme.colors.border};
+  background: ${props => hexToRgba(props.theme.colors.background, 0.5)};
+`;
+
 export const HeaderContent = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
-  border-bottom: 1px solid ${props => props.theme.colors.border};
-  background: ${props => hexToRgba(props.theme.colors.background, 0.5)};
+  max-width: 85rem;
+  margin: 0 auto;
 `;
 
 export const ProjectName = styled.div`

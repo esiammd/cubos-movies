@@ -8,7 +8,12 @@ import moonFillIcon from '../../assets/icons/moon-fill.svg';
 
 import CubosLogo from '../CubosLogo';
 
-import { HeaderContent, ProjectName, ToggleTheme } from './styles';
+import {
+  HeaderContainer,
+  HeaderContent,
+  ProjectName,
+  ToggleTheme,
+} from './styles';
 
 const Header: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
@@ -25,16 +30,18 @@ const Header: React.FC = () => {
   }, [navigate]);
 
   return (
-    <HeaderContent>
-      <ProjectName onClick={handleLogoClick}>
-        <CubosLogo />
-        <strong>Movies</strong>
-      </ProjectName>
+    <HeaderContainer>
+      <HeaderContent>
+        <ProjectName onClick={handleLogoClick}>
+          <CubosLogo />
+          <strong>Movies</strong>
+        </ProjectName>
 
-      <ToggleTheme type="button" title={title} onClick={toggleTheme}>
-        <img src={icon} />
-      </ToggleTheme>
-    </HeaderContent>
+        <ToggleTheme type="button" title={title} onClick={toggleTheme}>
+          <img src={icon} />
+        </ToggleTheme>
+      </HeaderContent>
+    </HeaderContainer>
   );
 };
 
