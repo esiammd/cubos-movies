@@ -22,10 +22,14 @@ export const HomeContainer = styled.div`
 `;
 
 export const Form = styled.form`
-  width: 30.5rem;
+  width: 34.56rem;
   display: flex;
   flex-direction: column;
   gap: 0.625rem;
+
+  @media (max-width: 768px) {
+    width: 23.7rem;
+  }
 `;
 
 export const FormHeader = styled.div`
