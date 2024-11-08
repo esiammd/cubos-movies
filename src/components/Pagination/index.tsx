@@ -1,8 +1,6 @@
-import React, { useMemo } from 'react';
-
+import React, { useEffect, useMemo, useState } from 'react';
 import ChevronLeftIcon from '../ChevronLeftIcon';
 import ChevronRightIcon from '../ChevronRightIcon';
-
 import { PaginationContent, PrevPage, NextPage, PageNumber } from './styles';
 
 interface PaginationProps {
@@ -11,14 +9,38 @@ interface PaginationProps {
   onPageChange: (page: number) => void;
 }
 
+const useWindowSize = () => {
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return windowSize;
+};
+
 const Pagination: React.FC<PaginationProps> = ({
   totalPages,
   currentPage,
   onPageChange,
 }: PaginationProps) => {
+  const { width } = useWindowSize();
+  const isMobile = width <= 768;
+
   const pageNumbers = useMemo(() => {
     const pages: number[] = [];
-    const maxVisiblePages = 5;
+    const maxVisiblePages = isMobile ? 4 : 5;
 
     let startPage: number;
     let endPage: number;
@@ -30,12 +52,24 @@ const Pagination: React.FC<PaginationProps> = ({
       if (currentPage <= 3) {
         startPage = 1;
         endPage = maxVisiblePages;
-      } else if (currentPage + 2 >= totalPages) {
-        startPage = totalPages - maxVisiblePages + 1;
-        endPage = totalPages;
       } else {
-        startPage = currentPage - 2;
-        endPage = currentPage + 2;
+        if (isMobile) {
+          if (currentPage + 1 >= totalPages) {
+            startPage = totalPages - maxVisiblePages + 1;
+            endPage = totalPages;
+          } else {
+            startPage = currentPage - 2;
+            endPage = currentPage + 1;
+          }
+        } else {
+          if (currentPage + 2 >= totalPages) {
+            startPage = totalPages - maxVisiblePages + 1;
+            endPage = totalPages;
+          } else {
+            startPage = currentPage - 2;
+            endPage = currentPage + 2;
+          }
+        }
       }
     }
 
@@ -44,15 +78,13 @@ const Pagination: React.FC<PaginationProps> = ({
     }
 
     return pages;
-  }, [currentPage, totalPages]);
+  }, [currentPage, totalPages, isMobile]);
 
   return (
     <PaginationContent>
       {totalPages > 1 && (
         <PrevPage
-          onClick={() => {
-            onPageChange(currentPage - 1);
-          }}
+          onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
         >
           <ChevronLeftIcon />
@@ -63,7 +95,11 @@ const Pagination: React.FC<PaginationProps> = ({
         <PageNumber
           key={pageNumber}
           $pageActive={currentPage === pageNumber}
-          onClick={() => onPageChange(pageNumber)}
+          onClick={() => {
+            if (typeof pageNumber === 'number') {
+              onPageChange(pageNumber);
+            }
+          }}
         >
           {pageNumber}
         </PageNumber>
@@ -71,9 +107,7 @@ const Pagination: React.FC<PaginationProps> = ({
 
       {totalPages > 1 && (
         <NextPage
-          onClick={() => {
-            onPageChange(currentPage + 1);
-          }}
+          onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
         >
           <ChevronRightIcon />

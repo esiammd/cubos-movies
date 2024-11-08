@@ -46,9 +46,9 @@ const PageItem = styled.button<PageNumberListProps>`
 `;
 
 export const PrevPage = styled(PageItem)`
-  width: 4rem;
+  width: 3.5rem;
 `;
 export const NextPage = styled(PageItem)`
-  width: 4rem;
+  width: 3.5rem;
 `;
 export const PageNumber = styled(PageItem)``;
