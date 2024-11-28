@@ -30,7 +30,6 @@ export type ThemeType = {
     };
 
     movieCard: {
-      background: string;
       title: string;
       description: string;
     };

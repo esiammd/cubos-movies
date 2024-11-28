@@ -27,7 +27,6 @@ export const dark: ThemeType = {
     },
 
     movieCard: {
-      background: '#000000',
       title: '#EEEEEE',
       description: '#B4B4B4',
     },

@@ -27,9 +27,8 @@ export const light: ThemeType = {
     },
 
     movieCard: {
-      background: '#550055',
-      title: '#211F26',
-      description: '#65636D',
+      title: '#EEEEEE',
+      description: '#B4B4B4',
     },
 
     input: {
